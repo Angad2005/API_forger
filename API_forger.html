@@ -47,25 +47,28 @@
         <!-- Header -->
         <header class="bg-gray-850 p-2 flex items-center justify-between border-b border-gray-700 shadow-md flex-shrink-0">
             <div class="flex items-center space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="00 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
                 <h1 class="text-xl font-bold text-white">API Forge Pro ✨</h1>
             </div>
             <div class="flex items-center space-x-3">
                 <div class="flex items-center">
-                    <span class="text-sm mr-2 text-gray-400">Environment:</span>
+                    <span class="text-sm mr-2 text-gray-400 hidden sm:inline">Environment:</span>
                     <select id="environment-selector" class="bg-gray-700 text-white py-1 px-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="none">No Environment</option>
                     </select>
                 </div>
-                <button id="environments-button" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">Manage Environments</button>
+                <button id="settings-button" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-3 rounded-lg transition-colors text-sm flex items-center space-x-2" title="Settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+                <button id="environments-button" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm">Manage Envs</button>
             </div>
         </header>
 
         <!-- Main Content Grid -->
-        <main class="flex-grow grid grid-cols-12 gap-2 p-2 overflow-hidden">
+        <main class="flex-grow grid grid-cols-1 md:grid-cols-12 gap-2 p-2 overflow-hidden">
             
             <!-- Left Panel: Collections/History -->
-            <div class="col-span-3 bg-gray-850 rounded-lg flex flex-col overflow-hidden border border-gray-700">
+            <div class="col-span-1 md:col-span-3 bg-gray-850 rounded-lg flex flex-col overflow-hidden border border-gray-700">
                 <div class="p-2 border-b border-gray-700 flex items-center space-x-1">
                     <button class="left-panel-tab flex-1 py-1 px-2 rounded-md text-sm" data-tab="collections">Collections</button>
                     <button class="left-panel-tab flex-1 py-1 px-2 rounded-md text-sm" data-tab="history">History</button>
@@ -91,17 +94,17 @@
             </div>
 
             <!-- Center Panel: Request Editor -->
-            <div id="center-panel-placeholder" class="col-span-4 bg-gray-850 rounded-lg border border-gray-700 flex items-center justify-center text-gray-500">
+            <div id="center-panel-placeholder" class="hidden md:flex col-span-4 bg-gray-850 rounded-lg border border-gray-700 flex items-center justify-center text-gray-500">
                 <p>Select a request or create a new one.</p>
             </div>
-            <div id="request-editor" class="col-span-4 bg-gray-850 rounded-lg flex flex-col overflow-hidden border border-gray-700 hidden">
+            <div id="request-editor" class="col-span-1 md:col-span-4 bg-gray-850 rounded-lg flex flex-col overflow-hidden border border-gray-700 hidden">
                 <input id="request-name-input" type="text" class="w-full bg-gray-900 p-2 border-b border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Unnamed Request">
                 <div class="p-2 flex items-center">
                     <select id="method-select" class="bg-gray-700 text-white font-bold py-2 px-3 rounded-l-lg appearance-none focus:outline-none">
                         <option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option>
                     </select>
                     <input id="url-input" type="text" placeholder="Enter URL or use {{variable}}" class="flex-grow bg-gray-900 border-y border-r border-gray-700 py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-r-lg">
-                    <button id="send-button" class="ml-2 bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-6 rounded-lg">Send</button>
+                    <button id="send-button" class="ml-2 bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg">Send</button>
                 </div>
                 
                 <div class="flex-grow flex flex-col overflow-hidden px-2 pb-2">
@@ -111,33 +114,30 @@
                         <button class="tab-btn py-2 px-4 text-gray-400 border-b-2 border-transparent hover:text-white" data-tab="body">Body</button>
                     </div>
                     <div id="tab-content" class="flex-grow overflow-auto">
-                        <!-- Auth Tab -->
                         <div id="auth-content" class="tab-pane hidden p-1 space-y-3">
                             <select id="auth-type-select" class="w-full bg-gray-700 p-2 rounded-md">
                                 <option value="none">No Auth</option><option value="bearer">Bearer Token</option><option value="basic">Basic Auth</option><option value="apikey">API Key</option>
                             </select>
                             <div id="auth-fields"></div>
                         </div>
-                        <!-- Headers Tab -->
-                        <div id="headers-content" class="tab-pane hidden h-full"><textarea id="headers-textarea" class="w-full h-full bg-gray-900 border border-gray-700 rounded-md p-2 text-white font-mono text-sm resize-none focus:outline-none"></textarea></div>
-                        <!-- Body Tab -->
-                        <div id="body-content" class="tab-pane hidden h-full"><textarea id="body-textarea" class="w-full h-full bg-gray-900 border border-gray-700 rounded-md p-2 text-white font-mono text-sm resize-none"></textarea></div>
+                        <div id="headers-content" class="tab-pane hidden h-full"><textarea id="headers-textarea" class="w-full h-full bg-gray-900 border border-gray-700 rounded-md p-2 text-white font-mono text-sm resize-none focus:outline-none" placeholder='{"Content-Type": "application/json"}'></textarea></div>
+                        <div id="body-content" class="tab-pane hidden h-full"><textarea id="body-textarea" class="w-full h-full bg-gray-900 border border-gray-700 rounded-md p-2 text-white font-mono text-sm resize-none focus:outline-none" placeholder='{"key": "value"}'></textarea></div>
                     </div>
                 </div>
-                 <div class="p-2 border-t border-gray-700 flex justify-between items-center">
-                    <div>
-                        <button id="generate-code-button" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-1 px-4 rounded-lg text-sm">Generate Code</button>
-                        <button id="docs-helper-button" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-1 px-4 rounded-lg text-sm">✨ Help Me Document</button>
+                 <div class="p-2 border-t border-gray-700 flex flex-wrap gap-2 justify-between items-center">
+                    <div class="flex gap-2">
+                        <button id="generate-code-button" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-1 px-3 rounded-lg text-sm">Generate Code</button>
+                        <button id="docs-helper-button" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-1 px-3 rounded-lg text-sm">✨ AI Docs</button>
                     </div>
                     <div class="flex space-x-2">
                          <button id="save-request-button" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-1 px-4 rounded-lg text-sm">Save</button>
-                         <button id="delete-request-button" class="bg-red-600 hover:bg-red-500 text-white font-bold py-1 px-4 rounded-lg text-sm">Delete</button>
+                         <button id="delete-request-button" class="bg-red-600 hover:bg-red-500 text-white font-bold py-1 px-3 rounded-lg text-sm">Delete</button>
                     </div>
                 </div>
             </div>
 
             <!-- Right Panel: Response Viewer -->
-            <div class="col-span-5 bg-gray-850 rounded-lg flex flex-col overflow-hidden border border-gray-700">
+            <div class="col-span-1 md:col-span-5 bg-gray-850 rounded-lg flex flex-col overflow-hidden border border-gray-700">
                 <div class="p-2 border-b border-gray-700 flex justify-between items-center">
                     <div class="flex items-center space-x-1">
                          <button class="response-panel-tab py-1 px-2 rounded-md text-sm" data-tab="response-body">Body</button>
@@ -153,13 +153,13 @@
                 </div>
                 <div id="response-tests-panel" class="response-panel-content hidden flex-grow flex flex-col overflow-auto">
                     <div class="p-2 flex justify-end items-center">
-                        <button id="generate-tests-button" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-1 px-4 rounded-lg text-sm">✨ Generate Tests</button>
+                        <button id="generate-tests-button" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-1 px-3 rounded-lg text-sm">✨ Generate Tests</button>
                     </div>
-                    <div id="tests-spinner" class="hidden absolute inset-0 bg-gray-850 bg-opacity-75 flex items-center justify-center">
+                    <div id="tests-spinner" class="hidden absolute inset-0 bg-gray-850 bg-opacity-75 flex items-center justify-center z-10">
                         <div class="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
                     </div>
                     <textarea id="tests-textarea" class="w-full flex-grow bg-gray-900 p-2 text-white font-mono text-sm resize-none focus:outline-none" placeholder="assert(response.status).equals(200);"></textarea>
-                    <div id="test-results" class="p-2 border-t border-gray-700 text-sm overflow-y-auto h-32"></div>
+                    <div id="test-results" class="p-2 border-t border-gray-700 text-sm overflow-y-auto h-32 font-mono"></div>
                 </div>
             </div>
         </main>
@@ -169,19 +169,10 @@
     <div id="environments-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50"></div>
     <div id="code-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50"></div>
     <div id="docs-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50"></div>
+    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50"></div>
     <input type="file" id="import-file-input" class="hidden" accept=".json">
 
     <script>
-    // This is a large, single-file application. For clarity, it's structured into sections:
-    // 1. DOM Element Selectors
-    // 2. Initial State & Data Structures
-    // 3. State Management (Load/Save)
-    // 4. Core Logic (Variables, Auth, Tests, etc.)
-    // 5. Gemini API Integration
-    // 6. Rendering Functions (UI Updates)
-    // 7. Event Handlers
-    // 8. Initialization
-    
     document.addEventListener('DOMContentLoaded', () => {
         // --- 1. DOM ELEMENT SELECTORS ---
         const app = document.getElementById('app');
@@ -190,7 +181,6 @@
         const requestEditor = document.getElementById('request-editor');
         const centerPanelPlaceholder = document.getElementById('center-panel-placeholder');
         const environmentSelector = document.getElementById('environment-selector');
-        const environmentsButton = document.getElementById('environments-button');
         const requestNameInput = document.getElementById('request-name-input');
         const methodSelect = document.getElementById('method-select');
         const urlInput = document.getElementById('url-input');
@@ -212,9 +202,6 @@
         const responseTimeEl = document.getElementById('response-time');
         const responseSizeEl = document.getElementById('response-size');
         const testResultsContainer = document.getElementById('test-results');
-        const environmentsModalContainer = document.getElementById('environments-modal');
-        const codeModalContainer = document.getElementById('code-modal');
-        const docsModalContainer = document.getElementById('docs-modal');
         const importFileInput = document.getElementById('import-file-input');
         
         // --- 2. INITIAL STATE & DATA STRUCTURES ---
@@ -236,13 +223,16 @@
         // --- 3. STATE MANAGEMENT ---
         const saveState = () => {
             const stateToSave = { ...state };
-            delete stateToSave.ui;
+            delete stateToSave.ui; // Don't save transient UI state
             localStorage.setItem('apiForgeProState', JSON.stringify(stateToSave));
         };
         const loadState = () => {
             const saved = localStorage.getItem('apiForgeProState');
             if (saved) {
-                state = { ...state, ...JSON.parse(saved) };
+                const parsed = JSON.parse(saved);
+                state = { ...state, ...parsed };
+                // Rehydrate Set
+                state.ui.openFolders = new Set(parsed.ui?.openFolders || []);
             }
         };
 
@@ -316,21 +306,21 @@
                 const assert = (value) => ({
                     equals: (expected) => {
                         if (value === expected) {
-                            log(`PASS: Expected ${value} to equal ${expected}`, 'lightgreen'); passed++;
+                            log(`✅ PASS: Expected ${value} to equal ${expected}`, 'lightgreen'); passed++;
                         } else {
-                            log(`FAIL: Expected ${value} to equal ${expected}`, 'salmon'); failed++;
+                            log(`❌ FAIL: Expected ${value} to equal ${expected}`, 'salmon'); failed++;
                         }
                     },
                     exists: () => {
                         if (value !== undefined && value !== null) {
-                            log(`PASS: Value exists`, 'lightgreen'); passed++;
+                            log(`✅ PASS: Value exists`, 'lightgreen'); passed++;
                         } else {
-                            log(`FAIL: Value does not exist`, 'salmon'); failed++;
+                            log(`❌ FAIL: Value does not exist`, 'salmon'); failed++;
                         }
                     }
                 });
                 (new Function('response', 'assert', testScript))(response, assert);
-            } catch (e) { log(`ERROR: ${e.message}`, 'red'); }
+            } catch (e) { log(`🚨 ERROR: ${e.message}`, 'red'); }
             log(`\nResults: ${passed} passed, ${failed} failed.`, 'white');
         };
 
@@ -348,29 +338,29 @@
 
         // --- 5. GEMINI API INTEGRATION ---
         async function callGeminiAPI(prompt) {
-            const apiKey = ""; // Left empty for runtime injection by the user's environment
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const apiKey = localStorage.getItem('gemini_api_key');
+            if (!apiKey) {
+                throw new Error("Gemini API Key is missing. Please add it in Settings (⚙️).");
+            }
+            // Updated to stable, widely-supported model
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
             
             const payload = {
                 contents: [{ parts: [{ text: prompt }] }],
             };
 
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                if (!response.ok) {
-                    const errorBody = await response.json();
-                    throw new Error(`API Error (${response.status}): ${errorBody.error.message}`);
-                }
-                const result = await response.json();
-                return result.candidates?.[0]?.content?.parts?.[0]?.text || "";
-            } catch (error) {
-                console.error("Gemini API call failed:", error);
-                throw error;
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            
+            if (!response.ok) {
+                const errorBody = await response.json();
+                throw new Error(`API Error (${response.status}): ${errorBody.error?.message || 'Unknown error'}`);
             }
+            const result = await response.json();
+            return result.candidates?.[0]?.content?.parts?.[0]?.text || "";
         }
 
         // --- 6. RENDERING FUNCTIONS ---
@@ -385,9 +375,12 @@
 
         const renderLeftPanelTabs = () => {
             document.querySelectorAll('.left-panel-tab').forEach(t => t.classList.remove('active-tab'));
-            document.querySelector(`.left-panel-tab[data-tab="${state.ui.leftPanelTab}"]`).classList.add('active-tab');
+            const activeTab = document.querySelector(`.left-panel-tab[data-tab="${state.ui.leftPanelTab}"]`);
+            if (activeTab) activeTab.classList.add('active-tab');
+            
             document.querySelectorAll('.left-panel-content').forEach(p => p.classList.add('hidden'));
-            document.getElementById(`${state.ui.leftPanelTab}-panel`).classList.remove('hidden');
+            const activePanel = document.getElementById(`${state.ui.leftPanelTab}-panel`);
+            if (activePanel) activePanel.classList.remove('hidden');
         };
 
         const renderCollections = () => {
@@ -399,13 +392,13 @@
                         const isOpen = state.ui.openFolders.has(item.id);
                         html += `<div class="folder ${isOpen ? 'open' : ''}" style="--level: ${level}">
                                 <div data-id="${item.id}" data-type="${item.type}" class="item-content flex justify-between items-center p-1 rounded-md hover:bg-gray-700 cursor-pointer">
-                                    <span class="font-bold">${item.name}</span><div>
-                                    <button class="new-folder-btn text-xs" data-id="${item.id}">+F</button>
-                                    <button class="new-request-btn text-xs" data-id="${item.id}">+R</button></div></div>
+                                    <span class="font-bold truncate">${item.name}</span><div class="flex space-x-1">
+                                    <button class="new-folder-btn text-xs bg-gray-600 px-1 rounded hover:bg-gray-500" data-id="${item.id}">+F</button>
+                                    <button class="new-request-btn text-xs bg-blue-600 px-1 rounded hover:bg-blue-500" data-id="${item.id}">+R</button></div></div>
                                 <div class="children ${isOpen ? '' : 'hidden'}">${renderTree(item.items || [], level + 1)}</div></div>`;
                     } else {
                         html += `<div style="--level: ${level}" class="item"><div data-id="${item.id}" data-type="request" class="item-content flex justify-between items-center p-1 rounded-md hover:bg-gray-700 cursor-pointer ${isActive ? 'active-request' : ''}">
-                                <span><span class="font-bold text-xs w-12 inline-block">${item.method}</span> ${item.name}</span></div></div>`;
+                                <span class="truncate"><span class="font-bold text-xs w-12 inline-block ${item.method === 'GET' ? 'text-green-400' : item.method === 'POST' ? 'text-yellow-400' : item.method === 'DELETE' ? 'text-red-400' : 'text-blue-400'}">${item.method}</span> ${item.name}</span></div></div>`;
                     }
                 });
                 return html;
@@ -415,8 +408,8 @@
 
         const renderHistory = () => {
             historyList.innerHTML = state.history.slice().reverse().map(h => `
-                <div data-id="${h.id}" class="history-item p-1 rounded-md hover:bg-gray-700 cursor-pointer">
-                    <div><span class="font-bold text-xs w-12 inline-block">${h.method}</span> ${h.name}</div>
+                <div data-id="${h.id}" class="history-item p-2 rounded-md hover:bg-gray-700 cursor-pointer border-l-2 border-transparent hover:border-blue-500">
+                    <div><span class="font-bold text-xs w-12 inline-block ${h.method === 'GET' ? 'text-green-400' : 'text-yellow-400'}">${h.method}</span> <span class="truncate inline-block max-w-[150px]">${h.name}</span></div>
                     <div class="text-xs text-gray-400 truncate">${h.url}</div></div>`).join('');
         };
         
@@ -429,10 +422,13 @@
             const request = findItem(state.activeRequestId);
             if (!request) {
                 requestEditor.classList.add('hidden');
-                centerPanelPlaceholder.classList.remove('hidden'); return;
+                centerPanelPlaceholder.classList.remove('hidden'); 
+                centerPanelPlaceholder.classList.add('flex');
+                return;
             }
             requestEditor.classList.remove('hidden');
             centerPanelPlaceholder.classList.add('hidden');
+            centerPanelPlaceholder.classList.remove('flex');
             requestNameInput.value = request.name;
             methodSelect.value = request.method;
             urlInput.value = request.url;
@@ -455,22 +451,47 @@
         };
 
         const renderResponse = ({ status, statusText, data, time, size, testsResponse }) => {
-            lastResponseData = testsResponse; // Store for AI features
+            lastResponseData = testsResponse;
             responsePlaceholder.classList.add('hidden');
             responseBodyPre.classList.remove('hidden');
-            try { responseBodyPre.innerHTML = JSON.stringify(JSON.parse(data), null, 2); } 
-            catch(e) { responseBodyPre.textContent = data; }
+            try { 
+                const parsed = JSON.parse(data);
+                responseBodyPre.innerHTML = syntaxHighlight(JSON.stringify(parsed, null, 2));
+            } catch(e) { 
+                responseBodyPre.textContent = data; 
+            }
             let statusClass = 'text-gray-400';
             if (status >= 200 && status < 300) statusClass = 'text-green-500';
             if (status >= 400) statusClass = 'text-red-500';
-            responseStatusEl.innerHTML = `<span class="${statusClass}">${status} ${statusText}</span>`;
+            responseStatusEl.innerHTML = `<span class="${statusClass} font-bold">${status} ${statusText}</span>`;
             responseTimeEl.textContent = `${time}ms`;
             responseSizeEl.textContent = `${(size/1024).toFixed(2)} KB`;
-            if (testsResponse) runTests(testsTextarea.value, testsResponse);
+            if (testsResponse && state.ui.responsePanelTab === 'response-tests') {
+                runTests(testsTextarea.value, testsResponse);
+            }
+        };
+
+        const syntaxHighlight = (json) => {
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                let cls = 'json-number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'json-key';
+                    } else {
+                        cls = 'json-string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'json-boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'json-null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
         };
 
         const showModal = (container, content) => {
-            container.innerHTML = `<div class="modal-content bg-gray-850 rounded-lg shadow-xl w-full max-w-2xl border border-gray-700 animate-in">${content}</div>`;
+            container.innerHTML = `<div class="modal-content bg-gray-850 rounded-lg shadow-xl w-full max-w-2xl border border-gray-700 animate-in m-4">${content}</div>`;
             container.classList.remove('hidden');
         };
 
@@ -490,6 +511,10 @@
                 const tabType = target.classList.contains('left-panel-tab') ? 'leftPanelTab' : (target.classList.contains('response-panel-tab') ? 'responsePanelTab' : 'centerPanelTab');
                 state.ui[tabType] = target.dataset.tab;
                 render();
+                // Re-run tests if switching to tests tab and data exists
+                if (tabType === 'responsePanelTab' && target.dataset.tab === 'response-tests' && lastResponseData) {
+                    runTests(testsTextarea.value, lastResponseData);
+                }
             } else if (target.matches('.item-content')) {
                 const { id, type } = target.dataset;
                 if (type === 'folder' || type === 'collection') {
@@ -552,9 +577,9 @@
             request.tests = testsTextarea.value;
             const auth = { type: authTypeSelect.value };
             switch(auth.type) {
-                case 'bearer': auth.token = document.getElementById('bearer-token').value; break;
-                case 'basic': auth.username = document.getElementById('basic-user').value; auth.password = document.getElementById('basic-pass').value; break;
-                case 'apikey': auth.key = document.getElementById('apikey-key').value; auth.value = document.getElementById('apikey-value').value; auth.in = document.getElementById('apikey-in').value; break;
+                case 'bearer': auth.token = document.getElementById('bearer-token')?.value || ''; break;
+                case 'basic': auth.username = document.getElementById('basic-user')?.value || ''; auth.password = document.getElementById('basic-pass')?.value || ''; break;
+                case 'apikey': auth.key = document.getElementById('apikey-key')?.value || ''; auth.value = document.getElementById('apikey-value')?.value || ''; auth.in = document.getElementById('apikey-in')?.value || 'header'; break;
             }
             request.auth = auth;
             render();
@@ -565,28 +590,42 @@
             request = JSON.parse(JSON.stringify(request));
             let url = substituteVariables(request.url);
             if (!url) { alert('URL is empty.'); return; }
+            
+            // Ensure URL has protocol
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+
             const startTime = Date.now();
             let headers = {};
             try { headers = JSON.parse(substituteVariables(request.headers || '{}')) } catch(e){}
             headers = applyAuth(headers, request);
+            
             if (request.auth?.type === 'apikey' && request.auth.in === 'query') {
-                const urlObj = new URL(url.startsWith('http') ? url : `http://${url}`);
+                const urlObj = new URL(url);
                 urlObj.searchParams.set(substituteVariables(request.auth.key), substituteVariables(request.auth.value));
                 url = urlObj.toString();
             }
+            
             const options = { method: request.method, headers };
             if (request.method !== 'GET' && request.body) options.body = substituteVariables(request.body);
+            
             try {
                 const response = await fetch(url, options);
                 const data = await response.text();
                 const endTime = Date.now();
+                
                 state.history.push({ ...findItem(state.activeRequestId), timestamp: Date.now() });
                 if(state.history.length > 50) state.history.shift();
+                
                 let testsResponse = { status: response.status, body: data, headers: Object.fromEntries(response.headers.entries())};
                 try { testsResponse.json = JSON.parse(data) } catch (e) {}
+                
                 renderResponse({ status: response.status, statusText: response.statusText, data, time: endTime - startTime, size: new Blob([data]).size, testsResponse });
                 renderHistory();
-            } catch (error) { renderResponse({ status: 'Error', statusText: 'Network Failed', data: error.message, time: 0, size: 0 }); }
+            } catch (error) { 
+                renderResponse({ status: 'Error', statusText: 'Network Failed', data: `CORS or Network Error: ${error.message}\n\nNote: If testing a local API, ensure it allows CORS, or use a CORS proxy.`, time: 0, size: 0 }); 
+            }
         });
 
         generateTestsButton.addEventListener('click', async () => {
@@ -596,16 +635,19 @@
             }
             testsSpinner.classList.remove('hidden');
             const request = findItem(state.activeRequestId);
-            const prompt = `You are a QA engineer. Based on this API request and JSON response, write a JavaScript test script using the provided 'assert' function. The tests should validate the response structure and content. Only output raw code, no explanations.
+            const prompt = `You are a QA engineer. Based on this API request and JSON response, write a JavaScript test script using the provided 'assert' function. The tests should validate the response structure and content. Only output raw code, no explanations, no markdown blocks.
 Request: ${request.method} ${request.url}
 Response Status: ${lastResponseData.status}
 Response Body: ${JSON.stringify(lastResponseData.json, null, 2)}
 Available Assertions: assert(value).equals(expected); and assert(value).exists();`;
             try {
-                const generatedTests = await callGeminiAPI(prompt);
-                testsTextarea.value = generatedTests.replace(/```javascript|```/g, '').trim();
+                let generatedTests = await callGeminiAPI(prompt);
+                // Clean up markdown if the model still adds it
+                generatedTests = generatedTests.replace(/```javascript|```/g, '').trim();
+                testsTextarea.value = generatedTests;
+                runTests(generatedTests, lastResponseData);
             } catch (e) {
-                alert("Failed to generate tests. Check the console for details.");
+                alert(`Failed to generate tests: ${e.message}`);
             } finally {
                 testsSpinner.classList.add('hidden');
             }
@@ -614,8 +656,8 @@ Available Assertions: assert(value).equals(expected); and assert(value).exists()
         docsHelperButton.addEventListener('click', async () => {
             const request = findItem(state.activeRequestId);
             if (!request) return;
-            const content = `<div class="p-4 border-b border-gray-700 flex justify-between items-center"><h3 class="text-xl font-bold text-white">✨ AI Documentation Helper</h3><button onclick="document.getElementById('docs-modal').dispatchEvent(new Event('close-modal'))" class="text-gray-400 hover:text-white text-2xl">&times;</button></div><div id="docs-content" class="p-6 min-h-[200px] flex items-center justify-center"><div class="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>`;
-            showModal(docsModalContainer, content);
+            const content = `<div class="p-4 border-b border-gray-700 flex justify-between items-center"><h3 class="text-xl font-bold text-white">✨ AI Documentation Helper</h3><button class="close-modal-btn text-gray-400 hover:text-white text-2xl">&times;</button></div><div id="docs-content" class="p-6 min-h-[200px] flex items-center justify-center"><div class="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>`;
+            showModal(document.getElementById('docs-modal'), content);
 
             const prompt = `You are a technical writer. Based on the following API request, write a concise, one-paragraph description of what this endpoint likely does. Then, provide a sample cURL command. Format the output with a "Description:" header and a "cURL Command:" header.
 Request Method: ${request.method}
@@ -624,27 +666,122 @@ Request Body: ${request.body || '(No Body)'}`;
 
             try {
                 const documentation = await callGeminiAPI(prompt);
+                const parts = documentation.split(/cURL Command:/i);
+                const desc = parts[0].replace(/Description:/i, '').trim();
+                const curl = parts[1] ? parts[1].trim().replace(/```bash|```/g, '') : 'Could not generate cURL.';
+                
                 document.getElementById('docs-content').innerHTML = `<div class="space-y-4">
                     <h4 class="text-lg font-semibold text-white">Description</h4>
-                    <p class="text-gray-300">${documentation.split("cURL Command:")[0].replace("Description:", "").trim()}</p>
+                    <p class="text-gray-300 leading-relaxed">${desc}</p>
                     <h4 class="text-lg font-semibold text-white">cURL Command</h4>
-                    <pre class="bg-gray-950 p-3 rounded-md text-sm whitespace-pre-wrap break-all text-green-400 font-mono">${documentation.split("cURL Command:")[1].trim()}</pre>
+                    <pre class="bg-gray-950 p-3 rounded-md text-sm whitespace-pre-wrap break-all text-green-400 font-mono border border-gray-700">${curl}</pre>
                 </div>`;
             } catch (e) {
-                document.getElementById('docs-content').innerHTML = `<p class="text-red-500">Failed to generate documentation. Please check the console.</p>`;
+                document.getElementById('docs-content').innerHTML = `<p class="text-red-500">Failed to generate documentation: ${e.message}</p>`;
             }
+        });
+
+        // Settings Modal Logic
+        document.getElementById('settings-button').addEventListener('click', () => {
+            const currentKey = localStorage.getItem('gemini_api_key') || '';
+            const content = `
+                <div class="p-4 border-b border-gray-700 flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-white">⚙️ Settings</h3>
+                    <button class="close-modal-btn text-gray-400 hover:text-white text-2xl">&times;</button>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Gemini API Key</label>
+                        <input type="password" id="gemini-api-key-input" value="${currentKey}" placeholder="Enter your Google AI Studio API key" class="w-full bg-gray-900 border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <p class="text-xs text-gray-400 mt-2">Your key is stored locally in your browser. <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-blue-400 hover:underline">Get a key here</a>.</p>
+                    </div>
+                    <div class="flex justify-end">
+                        <button id="save-settings-btn" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-lg text-sm">Save Settings</button>
+                    </div>
+                </div>`;
+            showModal(document.getElementById('settings-modal'), content);
+            
+            document.getElementById('save-settings-btn').addEventListener('click', () => {
+                const key = document.getElementById('gemini-api-key-input').value.trim();
+                if (key) {
+                    localStorage.setItem('gemini_api_key', key);
+                    alert('API Key saved successfully!');
+                    hideModal(document.getElementById('settings-modal'));
+                } else {
+                    localStorage.removeItem('gemini_api_key');
+                    alert('API Key removed.');
+                    hideModal(document.getElementById('settings-modal'));
+                }
+            });
         });
 
         authTypeSelect.addEventListener('change', e => renderAuthFields({ type: e.target.value }));
         environmentSelector.addEventListener('change', e => { state.activeEnvironmentId = e.target.value; saveState(); });
-        environmentsButton.addEventListener('click', () => { showModal(environmentsModalContainer, `<div class="p-4 border-b border-gray-700 flex justify-between items-center"><h3 class="text-xl font-bold text-white">Manage Environments</h3><button onclick="document.getElementById('environments-modal').dispatchEvent(new Event('close-modal'))" class="text-gray-400 hover:text-white text-2xl">&times;</button></div><div class="p-6 text-center text-gray-400"><p>Manage environments by exporting, editing the JSON, and re-importing.</p></div>`); });
-        generateCodeButton.addEventListener('click', () => { const snippets = generateCodeSnippets(findItem(state.activeRequestId)); showModal(codeModalContainer, `<div class="p-4 border-b border-gray-700 flex justify-between items-center"><h3 class="text-xl font-bold text-white">Generate Code</h3><button onclick="document.getElementById('code-modal').dispatchEvent(new Event('close-modal'))" class="text-gray-400 hover:text-white text-2xl">&times;</button></div><div class="p-6"><h4 class="text-lg font-semibold mb-2 text-white">cURL</h4><pre class="bg-gray-950 p-3 rounded-md text-sm whitespace-pre-wrap break-all text-green-400 font-mono">${snippets.curl.replace(/'/g, "'\\''")}</pre></div>`); });
-        [environmentsModalContainer, codeModalContainer, docsModalContainer].forEach(m => {
-            m.addEventListener('close-modal', () => hideModal(m));
-            m.addEventListener('click', e => { if (e.target === m) hideModal(m); });
+        
+        document.getElementById('environments-button').addEventListener('click', () => { 
+            showModal(document.getElementById('environments-modal'), `
+                <div class="p-4 border-b border-gray-700 flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-white">Manage Environments</h3>
+                    <button class="close-modal-btn text-gray-400 hover:text-white text-2xl">&times;</button>
+                </div>
+                <div class="p-6 text-center text-gray-400 space-y-4">
+                    <p>Environments can be managed by exporting your collections, editing the JSON file, and re-importing.</p>
+                    <div class="flex justify-center space-x-4">
+                        <button id="export-env-btn" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded-md text-sm">Export Current Setup</button>
+                    </div>
+                </div>`);
+            document.getElementById('export-env-btn').addEventListener('click', () => {
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ collections: state.collections, environments: state.environments }, null, 2));
+                const a = document.createElement('a'); a.setAttribute("href", dataStr); a.setAttribute("download", "api-forge-export.json");
+                document.body.appendChild(a); a.click(); a.remove();
+            });
         });
-        importFileInput.addEventListener('change', e => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (event) => { try { const data = JSON.parse(event.target.result); if (data.collections && data.environments) { state.collections = data.collections; state.environments = data.environments; render(); } else alert('Invalid file.'); } catch (err) { alert('Error parsing file.'); } }; reader.readAsText(file); });
+
+        generateCodeButton.addEventListener('click', () => { 
+            const snippets = generateCodeSnippets(findItem(state.activeRequestId)); 
+            showModal(document.getElementById('code-modal'), `
+                <div class="p-4 border-b border-gray-700 flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-white">Generate Code</h3>
+                    <button class="close-modal-btn text-gray-400 hover:text-white text-2xl">&times;</button>
+                </div>
+                <div class="p-6">
+                    <h4 class="text-lg font-semibold mb-2 text-white">cURL</h4>
+                    <pre class="bg-gray-950 p-3 rounded-md text-sm whitespace-pre-wrap break-all text-green-400 font-mono border border-gray-700">${snippets.curl}</pre>
+                </div>`); 
+        });
+
+        // Modal close handlers
+        document.querySelectorAll('[id$="-modal"]').forEach(m => {
+            m.addEventListener('click', e => { 
+                if (e.target === m || e.target.classList.contains('close-modal-btn')) {
+                    hideModal(m); 
+                }
+            });
+        });
+
+        importFileInput.addEventListener('change', e => { 
+            const file = e.target.files[0]; if (!file) return; 
+            const reader = new FileReader(); 
+            reader.onload = (event) => { 
+                try { 
+                    const data = JSON.parse(event.target.result); 
+                    if (data.collections && data.environments) { 
+                        state.collections = data.collections; 
+                        state.environments = data.environments; 
+                        render(); 
+                        alert('Import successful!');
+                    } else {
+                        alert('Invalid file format.'); 
+                    }
+                } catch (err) { 
+                    alert('Error parsing file.'); 
+                } 
+            }; 
+            reader.readAsText(file); 
+        });
+        
         document.getElementById('import-button').addEventListener('click', () => importFileInput.click());
+        
         document.getElementById('export-button').addEventListener('click', () => {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ collections: state.collections, environments: state.environments }, null, 2));
             const a = document.createElement('a'); a.setAttribute("href", dataStr); a.setAttribute("download", "api-forge-export.json");
@@ -654,10 +791,16 @@ Request Body: ${request.body || '(No Body)'}`;
         // --- 8. INITIALIZATION ---
         loadState();
         render();
-        document.querySelector('.tab-btn[data-tab="body"]').click();
-        document.querySelector('.response-panel-tab[data-tab="response-body"]').click();
+        
+        // Set default tabs if not set
+        if (!state.ui.centerPanelTab) state.ui.centerPanelTab = 'body';
+        if (!state.ui.responsePanelTab) state.ui.responsePanelTab = 'response-body';
+        
+        const bodyTab = document.querySelector('.tab-btn[data-tab="body"]');
+        if (bodyTab) bodyTab.click();
+        const responseBodyTab = document.querySelector('.response-panel-tab[data-tab="response-body"]');
+        if (responseBodyTab) responseBodyTab.click();
     });
     </script>
 </body>
 </html>
-
