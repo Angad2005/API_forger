@@ -4,6 +4,9 @@ A powerful, single-file, browser-based API testing client, supercharged with Goo
 
 API Forge Pro is a complete, standalone API testing environment that runs entirely in your web browser. It requires no installation, no backend, and no account. All your data is stored securely in your browser's local storage. It's designed for developers who need a portable, powerful tool that's easy to use and share.
 
+## Live Demo
+- Deployment: https://angad2005.github.io/API_forger/
+
 ## Key Features
 
 ### Core API Client Functionality
@@ -26,9 +29,10 @@ API Forge Pro is a complete, standalone API testing environment that runs entire
 ## Getting Started
 It couldn't be simpler:
 
-1. **Download**: Get the `api_forge.html` file.
-2. **Open**: Open the file in any modern web browser (Chrome, Firefox, Edge, Safari).
-3. **Done**: Start creating requests!
+1. **Try the live app**: Visit https://angad2005.github.io/API_forger/
+2. **Download**: Get the `api_forge.html` file.
+3. **Open**: Open the file in any modern web browser (Chrome, Firefox, Edge, Safari).
+4. **Done**: Start creating requests!
 
 ## How to Use
 
